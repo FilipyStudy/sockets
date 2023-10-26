@@ -1,3 +1,6 @@
+#Filipy da Silva Furtado
+#Programa para CRUD em bancos de dados MySQL
+
 import socket
 import threading
 import mysql.connector
