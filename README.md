@@ -1,3 +1,3 @@
-![Header] (https://imgur.com/escu0mG)
+<img source="https://imgur.com/escu0mG" width="945px" eight="250px">
 
 Estudos sobre uma aplicação socket desenvolvida na linguagem Python. Ela permite que um host envie dados em formato utf-8 para um servidor alocado na mesma rede local.
