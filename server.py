@@ -2,7 +2,6 @@
 # Programa para CRUD em bancos de dados MySQL
 # Faz verificação de login
 
-
 import socket
 import threading
 import mysql.connector
