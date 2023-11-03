@@ -9,7 +9,7 @@ import pickle
 
 connector = mysql.connector.connect(
     host="localhost",
-    password="password",
+    password="88324451",
     user="root"
 )
 cursor = connector.cursor()
