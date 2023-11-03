@@ -1,6 +1,8 @@
-#Filipy da Silva Furtado
-#Programa para CRUD em bancos de dados MySQL
-#Faz verificação de login
+# Filipy da Silva Furtado
+# Programa para CRUD em bancos de dados MySQL
+# Faz verificação de login
+
+
 import socket
 import threading
 import mysql.connector
@@ -13,6 +15,7 @@ connector = mysql.connector.connect(
 )
 cursor = connector.cursor()
 
+
 def login_verify(arr):
     try:
         cursor.execute(f"SELECT * FROM python_sockets.login WHERE username = '{arr[0].decode('utf-8')}'"
@@ -20,6 +23,7 @@ def login_verify(arr):
         return True
     except Exception as e:
         return f"Error: {e}"
+
 
 def run_server():
     server_ip = "192.168.100.103"
@@ -39,29 +43,32 @@ def run_server():
         print(f"Error occurs: {e}")
     finally:
         server.close()
+
+
 def handle_client(client_sock, client_addr):
     try:
         request = client_sock.recv(1024)
         request = pickle.loads(request)
-        if(login_verify(request)):
-                client_sock.send("True".encode("utf-8"))
-                print(f"Accepted connection with: {client_addr[0]}:{client_addr[1]}")
+        if (login_verify(request)):
+            client_sock.send("True".encode("utf-8"))
+            print(f"Accepted connection with: {client_addr[0]}:{client_addr[1]}")
+            while True:
+                request = client_sock.recv(1024)
+                request = request.decode("utf-8")
+                if request.lower() == "close":
+                    client_sock.send("The server closed your connection!".encode("utf-8"))
+                    break
+                print(f"Received: {request}")
+                client_sock.send("Received".encode("utf-8"))
         else:
-            client_sock.send("Login error".encode("utf-8"))
+            client_sock.send("Login error, closing the connection".encode("utf-8"))
             client_sock.close()
-        while True:
-            request = client_sock.recv(1024)
-            request = request.decode("utf-8")
-            if request.lower() == "close":
-                client_sock.send("The server closed your connection!".encode("utf-8"))
-                break
-            print(f"Received: {request}")
-            client_sock.send("Received".encode("utf-8"))
 
     except Exception as e:
         print(f"An error occurs on handle_client: {e}")
     finally:
         client_sock.close()
         print(f"Connection to client {client_addr[0]}:{client_addr[1]} closed.")
+
 
 run_server()
