@@ -9,6 +9,7 @@
 <br>
 <hr>
 <br>
+
 ### Objetivos futuros:
 <br>
 👷 - Registrar todos os acessos e operações de acordo com o usuário e seu nível de privilégio.<br>
