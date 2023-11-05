@@ -1,6 +1,12 @@
+#Filipy da Silva Furtado
+#Cliente para conexão e realização do CRUD
+
+#Importações inerentes ao funcionamento do script.
 import socket
 from hashlib import sha256
 import pickle
+
+#Define o funcionamento principal do script cliente.
 def run_client():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_ip = "192.168.100.103"
@@ -31,6 +37,7 @@ def run_client():
     client.close()
     print("Connection to server as been closed.")
 
+#Tentativa de login bem sucedida
 def login_try():
     username = input("Enter the username: ")
     password = input("Enter the password: ")
@@ -38,4 +45,5 @@ def login_try():
     hash_check = sha256((hash_pass + username).encode("utf-8")).hexdigest()
     return pickle.dumps([username, hash_check])
 
+#Executa o cliente.
 run_client()
