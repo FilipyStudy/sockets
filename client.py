@@ -19,7 +19,7 @@ def run_client():
     log_auth = client.recv(1024)
     log_auth = log_auth.decode("utf-8")
 
-    if log_auth != "True": connection == False
+    if log_auth != "True": connection = False
 
     while connection:
 

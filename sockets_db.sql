@@ -14,10 +14,13 @@ create table login (
     primary key (id)
 );
 
-create table action_logs (
-	username_id int not null,
-    username varchar(32) not null,
-    act text not null,
+create table login_logs (
+    username_id int not null,
+	username varchar(32) not null,
+    password varchar(64) not null,
+    user_ip varchar(12) not null,
+    localtime date not null,
+    primary key (username_id)
     foreign key (username_id) references login(id) on update cascade
 );
 
